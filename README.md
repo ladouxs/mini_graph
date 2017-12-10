@@ -1,5 +1,5 @@
 # mini_graph
-Implementation of a graph in C++ using STL
+Implementation of a graph in C++.
 
 mini_graph is a STL based representation implementing BFS search.
 
@@ -10,6 +10,7 @@ These instructions will get you a copy of the project up and running on your loc
 ### Installing
 
 Include mgraph.hpp in your C++ project.
+
 Note that a compiler that support c++11 is required.
 
 ### Examples
