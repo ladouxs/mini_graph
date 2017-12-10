@@ -1,6 +1,5 @@
 #include "mgraph.hpp"
 #include <gtest\gtest.h>
-#include <numeric>
 
 using namespace std;
 using namespace mini_graph;
@@ -66,7 +65,6 @@ TEST(mini_graph, three_stars)
 		v.clear();
 	}
 }
-
 
 TEST(mini_graph, unreachable_node)
 {

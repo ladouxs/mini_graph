@@ -29,14 +29,12 @@ namespace mini_graph
 		return lhs.node < rhs.node;
 	}
 
-
 	template<class T>
 	graph_node_<T>& addEdge(graph_node_<T>& g, T const node, T const next)
 	{
 		g.adj.push_back(next);
 		return g;
 	};
-
 
 	template<class T>
 	void addEdge(typename list< graph_node_<T> >::iterator g, T const node, T const next)
@@ -46,7 +44,6 @@ namespace mini_graph
 			g->adj.push_back(next);
 		}
 	};
-
 
 	template<class T >
 	class mgraph
@@ -58,9 +55,8 @@ namespace mini_graph
 	};
 
 
-	// Ajoute un arc
-	// Si un des noeuds n'existe pas, il est crée.
-	// Cette méthode gère les doublons : un arc n'est inséré qu'une fois.
+	// Add an edge in a directed graph and creates non-existing nodes passed as arguments.
+	// Assume the edge is created only once (no dupplicated).
 	template<class T>
 	auto addEdge(mgraph<T> &g, T const node, T const next)
 	{
@@ -78,9 +74,7 @@ namespace mini_graph
 		{
 			g.edges.push_back(nextNode);
 		}
-
 	};
-
 
 	template<class T>
 	void removeEdge(mgraph<T> &g, T const node, T const next)
@@ -93,8 +87,7 @@ namespace mini_graph
 		}
 	};
 
-
-	// Find a path bread search first
+	// Find a path using Bread Search First (bfs).
 	template<class T, class OutputIt >
 	bool find_path_bsf(mgraph<T> const& g, T const start, T const target, OutputIt nodes)
 	{
@@ -112,7 +105,6 @@ namespace mini_graph
 			file.pop_front();
 
 			// TODO : add visitor here (proceed with node)
-			//cout << nextNode.node;
 
 			for (auto& next : nextNode.adj)
 			{
@@ -126,21 +118,17 @@ namespace mini_graph
 			}
 		}
 
-
 		if (find(seen.begin(), seen.end(), graph_node_<T>(target)) != seen.end())
 		{
-			// extract shortest path
+			// Extract shortest path
 			list<T> shortestPath;
-
 			shortestPath.push_back(target);
-
 			auto e = target;
 			do
 			{
 				auto father = fathers[e];
 				shortestPath.push_front(father);
 				e = father;
-
 			} while (e != start);
 
 			for (auto& e : shortestPath)
@@ -150,11 +138,7 @@ namespace mini_graph
 			}
 			return true;
 		}
-
 		return false;
 	};
-
-
-
 
 } /// namespace mini_graph
